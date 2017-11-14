@@ -4,6 +4,8 @@ var socketIO = require('socket.io');
 var http = require('http');
 var server = http.createServer(app);
 var io = socketIO(server);
+var crypto = require('crypto');
+var key = "ladkfjeoijiejoef9878euofjopduf98ufpojfoij";
 
 var {generateMessage, generateLocationMessage} = require('./utils/message');
 var {isRealString} = require('./utils/validation');
@@ -37,8 +39,10 @@ io.on('connection', function(socket){
     socket.on('createMessage', function(message, callback){
         var user = users.getUser(socket.id);
 
+        var enc = crypto.createCipher("aes-256-ctr", key).update(message.text, "utf-8", "hex");
+        var dec = crypto.createDecipher("aes-256-ctr", key).update(enc, "hex", "utf-8");
         if(user && isRealString(message.text)){
-            io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));            
+            io.to(user.room).emit('newMessage', generateMessage(user.name, dec));            
         }
 
         callback();

@@ -14,9 +14,12 @@
   "author": "Seth McGuire",
   "license": "ISC",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.16.2",
+    "https": "^1.0.0",
     "moment": "^2.19.1",
     "nodemon": "^1.12.1",
+    "openssl": "^1.1.0",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
