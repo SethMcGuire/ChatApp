@@ -1,20 +1,20 @@
-var express = require('express');
-var app = express();
-var socketIO = require('socket.io');
-var http = require('http');
-var server = http.createServer(app);
-var io = socketIO(server);
-var crypto = require('crypto');
-var key = "ladkfjeoijiejoef9878euofjopduf98ufpojfoij";
+var  express = require('express'),
+     app = express(),
+     socketIO = require('socket.io'),
+     http = require('http'),
+     server = http.createServer(app),
+     io = socketIO(server),
+     crypto = require('crypto'),
+     key = "ladkfjeoijiejoef9878euofjopduf98ufpojfoij";
 
-var {generateMessage, generateLocationMessage} = require('./utils/message');
-var {isRealString} = require('./utils/validation');
-var {Users} = require('./utils/users');
-var users = new Users();
+var  {generateMessage, generateLocationMessage} = require('./utils/message'),
+     {isRealString} = require('./utils/validation'),
+     {Users} = require('./utils/users'),
+     users = new Users();
 
-var path = require('path');
-var publicPath = path.join(__dirname, '../public');
-var port = process.env.PORT || 3000;
+var  path = require('path'),
+     publicPath = path.join(__dirname, '../public'),
+     port = process.env.PORT || 3000;
 
 app.use(express.static(publicPath));
 
